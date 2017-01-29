@@ -1,0 +1,6 @@
+#define TRACEPOINT_CREATE_PROBES
+#define TRACEPOINT_PROBE_DYNAMIC_LINKAGE
+#define TRACEPOINT_DEFINE
+
+#include "hello-tp.h"
+

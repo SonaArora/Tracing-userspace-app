@@ -1,0 +1,24 @@
+Lttng- linux tracing tool for next generation is used simultaneously to trace user space application process as well as kernel processes.
+Here is a demo for tracing user space application process.
+
+STEPS:
+1. Create the tracepoint provider header file(hello-tp.h), which defines the tracepoints and the events they can generate.
+2. Create the tracepoint provider package source file(hello-tp.c).
+3. Build the tracepoint provider package: - gcc -c -I. hello-tp.h
+4. Create the  application source file(hello.c)  
+5. Build the application: gcc -c hello.c
+6. Link the application with the tracepoint provider package, liblttng-ust, and libdl: gcc -o hello hello.o hello-tp.o -llttng-ust -ldl
+
+To trace user application, do the following :
+1. Run the application with a few arguments: ./hello it's nice 11
+2. Start lttng session daemon: lttng-sessiond -d
+3. Create lttng session: lttng create session1
+4. Create an event rule which matches the hello_world:my_first_tracepoint event name:lttng enable-event --userspace hello_world:my_first_tracepoint
+5. Start tracing : lttng start [NOTE: Before staring to trace, take care application to run the app another terminal]
+6. Go back to the terminal where app is running, press enter to exit the execution of app.
+7. Stop tracing the session once the execution of app terminates : lttng stop.
+
+Analyze the session traces:
+Lttng produces output in CTF(Common Trace Format) which is in binary format as it is very easy to write millions of traces in binary format frequently.To read trace we use babeltrace tool.
+Run: babeltrace <trace-file-name> <output-file-name>
+Here output traces are in file named "traces".

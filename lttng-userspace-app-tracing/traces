@@ -1,0 +1,4 @@
+[15:02:51.145441317] (+?.?????????) master hello_world:my_first_tracepoint: { cpu_id = 0 }, { my_string_field = "hi there!", my_integer_field = 23 }
+[15:02:51.145458249] (+0.000016932) master hello_world:my_first_tracepoint: { cpu_id = 0 }, { my_string_field = "./hello", my_integer_field = 0 }
+[15:02:51.145483582] (+0.000025333) master hello_world:my_first_tracepoint: { cpu_id = 0 }, { my_string_field = "x^2", my_integer_field = 1 }
+

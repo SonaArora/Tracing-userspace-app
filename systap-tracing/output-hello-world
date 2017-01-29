@@ -1,0 +1,8 @@
+Pass 1: parsed user script and 117 library scripts using 234816virt/37268res/7664shr/29772data kb, in 90usr/10sys/97real ms.
+Pass 2: analyzed script: 1 probe, 1 function, 0 embeds, 0 globals using 235476virt/38036res/7924shr/30432data kb, in 0usr/0sys/3real ms.
+Pass 3: translated to C into /tmp/stapaFC6Zl/stap_ee68a5bd5c864ced451108f395b7061a_999_src.c using 235476virt/38596res/8240shr/30432data kb, in 0usr/0sys/0real ms.
+Pass 4: compiled C into stap_ee68a5bd5c864ced451108f395b7061a_999.ko in 1350usr/380sys/1616real ms.
+Pass 5: starting run.
+hello world
+Pass 5: run completed in 0usr/20sys/325real ms.
+

@@ -1,0 +1,5 @@
+Tracing application using system tap is comparatively easy than lttng.
+All we need to do is to create a file from which we are probing user applications/ kernel process.
+Run : stap -v filename.
+
+

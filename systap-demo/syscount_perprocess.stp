@@ -1,0 +1,14 @@
+global arr
+
+probe syscall.*
+{
+	arr[execname(),pid()]+=1
+}
+probe timer.s(10)
+{
+	foreach([pname,id] in arr)
+		printf("%d , %s = %d\n", pname, pid, arr[pname,pid])
+	delete arr
+}
+
+//print process name and process id of processes probing all system calls.

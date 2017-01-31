@@ -1,0 +1,44 @@
+global status
+global bt
+global quit
+global ptr
+probe begin {
+    warn("Start tracing. Wait for 1 min to complete.\n")
+}
+probe 
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/*").function("dict_ref") {
+    printf("inside1 \n")
+    if (pid() == target()) {
+        printf("inside2\n")
+        if (quit) {
+	    printf("inside3\n")
+            foreach ([bt,ptr] in status) {
+                print_ustack(bt)
+                printf("\n%u",$this)
+                printf("\ncount = %d\n", status[bt,ptr]);
+            }
+            quit=0;
+            //exit()
+        } else {
+            printf("inside else\n")
+            ptr = $this;
+            bt = ubacktrace()
+            status[bt,ptr]++
+        }
+    }
+}
+probe 
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/*").function("dict_unref") {
+    if (pid() == target()) {
+        printf("\n  dict_unref working\n")
+	bt = ubacktrace()
+        ptr = $this
+        status[bt,ptr]--
+        if(status[bt,ptr] == 0)
+            delete status[bt,ptr];  
+    }
+}
+probe timer.s(300) {
+    quit = 1
+    printf("print dict_ref stacks in every 1 minute\n");
+}

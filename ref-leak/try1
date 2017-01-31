@@ -1,3 +1,9 @@
+/*
+APPROACH 1 : 
+To probe dict_ref and each time when it hits, increase the value of counter in the assocative array named status whose key is backtraces(bt).
+Similarly when dict_unref is probed, decrease the value of counter.
+At the end, print the left out values from the array i.e. traces and their corresponding counter.
+
 global count
 global status
 global bt
@@ -7,7 +13,7 @@ probe begin{
 	warn("Start tracing.\n")
 
 probe process("/usr/local/sbin/glusterfs").library("/usr/local/lib/*").function("dict_ref") {
-    printf("probed dict_ref :) \n")
+    printf("probed dict_ref\n")
     if(quit) {
         foreach(bt in status) {
 	    print_ustack(bt)
@@ -25,8 +31,8 @@ probe process("/usr/local/sbin/glusterfs").library("/usr/local/lib/*").function(
 }
 
 
-probe process("/usr/local/sbin/glusterfs").library("/usr/local/lib/libglusterfs.so.0").function("dict_uref") {
-    printf("probed dict_ref :) \n")
+probe process("/usr/local/sbin/glusterfs").library("/usr/local/lib/*").function("dict_uref") {
+    printf("probed dict_ref\n")
     bt = ubacktrace()
     status[bt] = --count
     if(status[bt] == 0)

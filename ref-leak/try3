@@ -1,5 +1,7 @@
+/*
 APPROACH 2:
 To probe dict_ref and maintain an array containing dict_t pointer and traces as well as count (no. of times dict_ref is probed). Decrease the counter when dict_unref is probed and print the left out values after every 600sec.
+*/
 
 global status
 global bt

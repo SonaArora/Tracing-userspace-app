@@ -1,0 +1,53 @@
+/*
+APPROACH : To probe dict_ref and maintain an array containing dict_t pointer and traces as well as count (no. of times dict_ref is probed).
+Decrease the counter when dict_unref is probed and print the left out values after every 600sec.
+
+BLOCKER : We are putting enteries in array trace on the basis of ptr. So the different functions having different bt but same value of ptr will get overrided and thus while removing the entries from this array when dict_unref is called, wrong backtraces may get removed. 
+*/
+
+global trace
+global ptr
+global bt
+global status
+global quit
+probe begin {
+    warn("Start tracing. Wait for 1 min to complete.\n")
+}
+probe 
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/libglusterfs.so.0").function("dict_ref") {
+    printf("inside :\n")
+    if (pid() == target()) {
+        printf("inside 1\n")
+        if (quit) {
+	    printf("inside 2\n")
+            foreach ([bt,ptr] in status) {
+                printf("Traces-dict_ref\n")
+                print_ustack(bt)
+                printf("\n%p\n",ptr)
+                printf("count = %d",status[bt,ptr])
+                printf("\n\n");
+            }
+            quit=0;
+            //exit()
+        } else {
+            ptr = $this;
+            bt = ubacktrace()
+            trace[ptr] = bt
+            status[bt,ptr]++
+        }
+    }
+}
+probe 
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/libglusterfs.so.0").function("dict_unref") {
+    if (pid() == target()) {
+	bt = trace[ptr]
+        status[bt,ptr]--
+        if(status[bt,ptr]==0)
+            delete trace[ptr]
+            delete status[bt,ptr];  
+    }
+}
+probe timer.s(600) {
+    quit = 1
+    printf("print dict_ref stacks in every 1 minute\n");
+}

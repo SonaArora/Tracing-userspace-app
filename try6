@@ -1,0 +1,97 @@
+APPROACH : to make a separate array corresponding to every pointer which contain count for each backtrace and after a fix time interval, count
+the occurences for all the arrays, and printing the trace of only those arrays whose count is non-zero.
+
+BLOCKER: The appraoch to create a new array everytime fails:  trace_$ptr($ptr is not replaced bt its pointer value) so new array is not creating for a new ptr, instead values are appending in the same array. (stap calculates the hash of trace_$ptr before replacing the value of $ptr). So the whole idea fails because of this.
+
+global quit
+global bt
+global ptr
+global trace_$ptr
+global count_$ptr
+global arr_pointers
+
+probe begin{
+	printf("Tracing started. Wait for 10 minutes.\n")
+}
+
+function prinitng_leaks(){
+/*	if(quit){
+		foreach(i in arr_pointers){
+			ptr = i
+				printf("\n\n------\n\n")
+				count_$ptr = 0
+				printf("probed dict_ref1 \n")
+				printf("ptr1 = %u\n",ptr)
+				foreach(bt in trace_$ptr){
+					printf("inside for loop")
+					printf("\n")
+					count_$ptr += trace_$ptr[bt]
+						printf("count_i = %d ",count_$ptr)
+				}
+			printf("\ncount = %d\n",count_$ptr)
+				if(count_$ptr){
+					printf("Leaks are : \n")
+						foreach(bt in trace_$ptr){
+							print_ustack(bt)
+								printf("\n")
+						}
+				}
+			//delete trace_$ptr
+				printf("\n\n------\n\n")
+		}
+	}
+		delete arr_pointers
+		quit = 0
+*/
+}
+
+probe
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/libglusterfs.so.0").function("dict_ref"){
+	if(pid()==target()){
+		printf("probed dict_ref2 \n")
+			ptr = $this
+			printf("ptr2 = %u\n",ptr)
+			bt = ubacktrace()
+			print_ustack(bt)
+			trace_$ptr[bt] = trace_$ptr[bt] + 1
+			printf("value of count when dict_ref is probed for ptr %u = %d\n\n",ptr,trace_$ptr[bt])
+                        arr_pointers[ptr] = ptr
+			delete ptr
+			delete bt
+
+	} else{
+		printf("probing of dict_unref is failed as pid doesn't matched.\n")
+			exit()
+	}
+
+}
+
+probe
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/libglusterfs.so.0").function("dict_unref"){
+	printf("probed dict_unref\n")
+		ptr = $this
+		printf("ptr3 = %u\n",ptr)
+		bt = ubacktrace()
+		print_ustack(bt)
+		trace_$ptr[bt] = trace_$ptr[bt] - 1
+                printf("value of count when dict_unref is probed for ptr %u = %d\n",ptr,trace_$ptr[bt])
+                arr_pointers[ptr] = ptr
+		delete ptr
+		delete bt
+}
+
+
+probe timer.s(60){
+	quit = 1
+		printf("\nprinting leaks in every 60 seconds.\n")
+		prinitng_leaks()
+//		printf("arr_pointers : \n")
+//		foreach(i in arr_pointers){
+//		ptr = arr_pointers[i] 
+//			printf("%d \n",ptr)
+//		}
+
+}
+
+
+

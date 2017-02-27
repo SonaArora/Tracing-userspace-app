@@ -3,6 +3,7 @@ the occurences for all the arrays, and printing the trace of only those arrays w
 
 BLOCKER: The appraoch to create a new array everytime fails:  trace_$ptr($ptr is not replaced bt its pointer value) so new array is not creating for a new ptr, instead values are appending in the same array. (stap calculates the hash of trace_$ptr before replacing the value of $ptr). So the whole idea fails because of this.
 
+
 global quit
 global bt
 global ptr

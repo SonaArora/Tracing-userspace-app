@@ -71,7 +71,7 @@ probe
 process("/usr/local/sbin/glusterfs").library("/usr/local/lib/libglusterfs.so.0").function("dict_unref"){
 	printf("probed dict_unref\n")
 		ptr = $this
-		printf("ptr3 = %u\n",ptr)
+		printf("ptr = %u\n",ptr)
 		bt = ubacktrace()
 		print_ustack(bt)
 		trace_$ptr[bt] = trace_$ptr[bt] - 1

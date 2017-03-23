@@ -1,0 +1,49 @@
+/*
+APPROACH 2:
+To probe dict_ref and maintain an array containing dict_t pointer and traces as well as count (no. of times dict_ref is probed). Decrease the counter when dict_unref is probed and print the left out values after every 600sec.
+*/
+
+global status
+global bt
+global quit
+global ptr
+probe begin {
+    warn("Start tracing. Wait for 10 minutes\n")
+}
+probe 
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/*").function("dict_ref") {
+    printf("inside1 \n")
+    if (pid() == target()) {
+        printf("inside2\n")
+        if (quit) {
+	    printf("inside3\n")
+            foreach ([bt,ptr] in status) {
+                print_ustack(bt)
+                printf("\n%u",$this)
+                printf("\ncount = %d\n", status[bt,ptr]);
+            }
+            quit=0;
+            //exit()
+        } else {
+            printf("inside else\n")
+            ptr = $this;
+            bt = ubacktrace()
+            status[bt,ptr]++
+        }
+    }
+}
+probe 
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/*").function("dict_unref") {
+    if (pid() == target()) {
+        printf("\n  dict_unref working\n")
+	bt = ubacktrace()
+        ptr = $this
+        status[bt,ptr]--
+        if(status[bt,ptr] == 0)
+            delete status[bt,ptr];  
+    }
+}
+probe timer.s(600) {
+    quit = 1
+    printf("print dict_ref stacks in every 10 minutes\n");
+}

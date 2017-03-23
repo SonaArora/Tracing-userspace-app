@@ -1,0 +1,16 @@
+global arr_syscall
+
+probe syscall.*
+{
+	arr_syscall[name] += 1
+}
+
+probe timer.s(10)
+{
+	foreach(n in arr_syscall - limit 5)
+	{
+	   printf("%s = %d\n",n,arr_syscall[n])
+	}
+}
+
+//print name of processes probing all system calls after every 10 seconds.

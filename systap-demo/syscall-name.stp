@@ -1,0 +1,6 @@
+probe syscall.*
+{
+	printf("%s\n",name)
+}
+
+//print all the names of process probing all syscalls

@@ -1,7 +1,7 @@
 1. Installing system tap :
 https://www.sourceware.org/systemtap/SystemTap_Beginners_Guide/using-systemtap.html
 
-2. stap -MAXACTION=800000 -v <stap_script>
+2. stap -DMAXACTION=800000 -v <stap_script>
 
 3. Perform some i/o's.
 

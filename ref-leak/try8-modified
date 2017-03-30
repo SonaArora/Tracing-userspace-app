@@ -15,7 +15,7 @@ global i
 global traces
 
 probe begin {
-    warn("Started tracing. Printig leaks after every 10 minutes.\n")
+    warn("Started tracing. Printing leaks after every 10 minutes. \n")
 }
 
 function print_trace(){

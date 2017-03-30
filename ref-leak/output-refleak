@@ -1,0 +1,244 @@
+------------------------------------
+ROUND 0
+
+
+ptr = 7f9a140218ec
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a23def3a8 [client.so+0x513a8]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a23b2bf6f [dht.so+0x37f6f]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a23dcd1a6 [client.so+0x2f1a6]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a23afe1a6 [dht.so+0xa1a6]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a22c86261 [md-cache.so+0x3261]
+
+      ---
+
+ptr = 7f9a1800910c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a2c54a399 [fuse.so+0x8399]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+args_create_store+0x89 [libglusterfs.so.0.0.1]
+fop_create_stub+0x19b [libglusterfs.so.0.0.1]
+0x7f9a22a7ca2f [io-threads.so+0x5a2f]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1b3 [md-cache.so+0xa1b3]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1cd [md-cache.so+0xa1cd]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+args_wipe+0xe5 [libglusterfs.so.0.0.1]
+call_stub_wipe_args+0x1c [libglusterfs.so.0.0.1]
+call_stub_destroy+0x83 [libglusterfs.so.0.0.1]
+call_resume+0xee [libglusterfs.so.0.0.1]
+0x7f9a22a7bfd2 [io-threads.so+0x4fd2]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a2c546e48 [fuse.so+0x4e48]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8562e [md-cache.so+0x262e]
+
+      ---
+
+ptr = 7f9a24057f3c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a22c86261 [md-cache.so+0x3261]
+
+      ---
+
+ptr = 7f9a1800a92c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a2c54a399 [fuse.so+0x8399]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+args_create_store+0x89 [libglusterfs.so.0.0.1]
+fop_create_stub+0x19b [libglusterfs.so.0.0.1]
+0x7f9a22a7ca2f [io-threads.so+0x5a2f]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1b3 [md-cache.so+0xa1b3]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1cd [md-cache.so+0xa1cd]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+args_wipe+0xe5 [libglusterfs.so.0.0.1]
+call_stub_wipe_args+0x1c [libglusterfs.so.0.0.1]
+call_stub_destroy+0x83 [libglusterfs.so.0.0.1]
+call_resume+0xee [libglusterfs.so.0.0.1]
+0x7f9a22a7bfd2 [io-threads.so+0x4fd2]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a2c546e48 [fuse.so+0x4e48]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8562e [md-cache.so+0x262e]
+
+      ---
+
+ptr = 7f9a24058e5c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a22c86261 [md-cache.so+0x3261]
+
+      ---
+
+------------------------------------
+
+------------------------------------
+ROUND 1
+
+
+ptr = 7f9a140218ec
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a23def3a8 [client.so+0x513a8]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a23b2bf6f [dht.so+0x37f6f]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a23dcd1a6 [client.so+0x2f1a6]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a23afe1a6 [dht.so+0xa1a6]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a22c86261 [md-cache.so+0x3261]
+
+      ---
+
+ptr = 7f9a1800910c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a2c54a399 [fuse.so+0x8399]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+args_create_store+0x89 [libglusterfs.so.0.0.1]
+fop_create_stub+0x19b [libglusterfs.so.0.0.1]
+0x7f9a22a7ca2f [io-threads.so+0x5a2f]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1b3 [md-cache.so+0xa1b3]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1cd [md-cache.so+0xa1cd]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+args_wipe+0xe5 [libglusterfs.so.0.0.1]
+call_stub_wipe_args+0x1c [libglusterfs.so.0.0.1]
+call_stub_destroy+0x83 [libglusterfs.so.0.0.1]
+call_resume+0xee [libglusterfs.so.0.0.1]
+0x7f9a22a7bfd2 [io-threads.so+0x4fd2]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a2c546e48 [fuse.so+0x4e48]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8562e [md-cache.so+0x262e]
+
+      ---
+
+ptr = 7f9a24057f3c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a22c86261 [md-cache.so+0x3261]
+
+      ---
+
+ptr = 7f9a1800a92c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a2c54a399 [fuse.so+0x8399]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+args_create_store+0x89 [libglusterfs.so.0.0.1]
+fop_create_stub+0x19b [libglusterfs.so.0.0.1]
+0x7f9a22a7ca2f [io-threads.so+0x5a2f]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1b3 [md-cache.so+0xa1b3]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1cd [md-cache.so+0xa1cd]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+args_wipe+0xe5 [libglusterfs.so.0.0.1]
+call_stub_wipe_args+0x1c [libglusterfs.so.0.0.1]
+call_stub_destroy+0x83 [libglusterfs.so.0.0.1]
+call_resume+0xee [libglusterfs.so.0.0.1]
+0x7f9a22a7bfd2 [io-threads.so+0x4fd2]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a2c546e48 [fuse.so+0x4e48]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8562e [md-cache.so+0x262e]
+
+      ---
+
+ptr = 7f9a24058e5c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a22c86261 [md-cache.so+0x3261]
+
+      ---
+
+ptr = 7f9a1800180c
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+dict_new+0x31 [libglusterfs.so.0.0.1]
+0x7f9a2c54a399 [fuse.so+0x8399]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+args_create_store+0x89 [libglusterfs.so.0.0.1]
+fop_create_stub+0x19b [libglusterfs.so.0.0.1]
+0x7f9a22a7ca2f [io-threads.so+0x5a2f]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1b3 [md-cache.so+0xa1b3]
+
+dict_ref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8d1cd [md-cache.so+0xa1cd]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+args_wipe+0xe5 [libglusterfs.so.0.0.1]
+call_stub_wipe_args+0x1c [libglusterfs.so.0.0.1]
+call_stub_destroy+0x83 [libglusterfs.so.0.0.1]
+call_resume+0xee [libglusterfs.so.0.0.1]
+0x7f9a22a7bfd2 [io-threads.so+0x4fd2]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a2c546e48 [fuse.so+0x4e48]
+
+dict_unref+0xc [libglusterfs.so.0.0.1]
+0x7f9a22c8562e [md-cache.so+0x262e]
+
+      ---
+------------------------------------

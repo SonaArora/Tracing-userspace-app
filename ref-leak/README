@@ -1,0 +1,8 @@
+1. Installing system tap :
+https://www.sourceware.org/systemtap/SystemTap_Beginners_Guide/using-systemtap.html
+
+2. Perform some i/o's.
+
+3. stap -MAXACTION=800000 -v <stap_script>
+
+4. Analyzing the leak paths.

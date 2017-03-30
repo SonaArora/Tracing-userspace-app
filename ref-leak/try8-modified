@@ -1,0 +1,83 @@
+/* APPROACH : To trace memory referencing and dereferencing function dict_ref() and dict_unref(). Increasing the value of count in array, named count by +1 every time when dict_ref gets probed and decreasing it by -1 when dict_unref gets probed. After few mintues, say 15 minutes, calculating the value of counter for each ptr and printing all the traces corresponding to those ptrs whose sum of counter is non zero.
+
+EXPECTED OUTPUT : Backtraces of functions which are leaking.
+
+SCRIPT'S OUTPUT : All possible traces for every pointer which is leaking. Need to filter the leaked ones. 
+
+*/
+
+global count
+global arr_ptr
+global sum
+global ptr
+global status
+global i
+global traces
+
+probe begin {
+    warn("Started tracing. Printig leaks after every 10 minutes.\n")
+}
+
+function print_trace(){
+//counting the no. of occurence for each ptr and storing the count in <sum> array.
+		foreach(q in arr_ptr){
+			foreach([m,n] in count){
+				if(q==m){
+				      sum[q] = sum[q] + count[m,n]
+				}
+			}
+		}
+
+//printing all the leaked, non-leaked traces for each ptr if there is any leak.
+	foreach(m in sum){
+		if(sum[m]!=0){
+			status = 1
+			printf("\nptr = %x\n\n",m)
+			foreach([s,t] in traces){
+				if(m == s){
+					printf("%s\n\n",traces[s,t])
+				}
+			}printf("      ---     \n")
+		}
+		
+	}
+	delete sum
+	if(status == 0)
+		printf("\nno leaks\n")
+	status = 0
+}
+
+
+
+probe
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/libglusterfs.so.0").function("dict_ref") {
+			ptr = $this
+			bt1 = ubacktrace()
+			// to keep count of no. of times dict_ref is probed.
+			count[ptr,bt1] += 1
+			 // to store traces
+			traces[ptr,bt1] = sprint_ubacktrace()
+			//to maintain an array of unique pointers
+			arr_ptr[ptr] = 1 
+}
+
+
+probe 
+process("/usr/local/sbin/glusterfs").library("/usr/local/lib/libglusterfs.so.0").function("dict_unref") {
+			ptr = $this
+			bt1 = ubacktrace()
+			if(arr_ptr[ptr] == 1){
+				count[ptr,bt1] -= 1
+			        traces[ptr,bt1] = sprint_ubacktrace()
+			}
+}
+
+probe timer.s(600) {
+    printf("\n");
+    printf("------------------------------------\n")
+    printf("ROUND %d\n\n",i)
+    i = i + 1
+    print_trace()
+    printf("------------------------------------\n")
+}
+
